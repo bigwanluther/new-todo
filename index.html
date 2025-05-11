@@ -40,13 +40,32 @@
     const addbtn = document.getElementById("addBtn");
 
     addbtn.addEventListener("click", () => {
-      fetch("https://jsonplaceholder.typicode.com/todos/1")
+      fetch("https://jsonplaceholder.typicode.com/todos/2")
         .then(response => response.json())
         .then(json => {
+          const todoItem = document.createElement("div")
+          todoItem.className ="bg-puple-700 flex w-full gap-4 item-center text-center justify-center  text-white py-2 px-16"
+
           const todovalue = document.createElement("p");
           todovalue.textContent = json.title;
           todovalue.className = "bg-purple-700 px-4 py-2 rounded text-white";
-          todos.appendChild(todovalue);
+
+          const deleteTodo = document.createElement("button");
+          deleteTodo.className = "bg-red-700 px-4 py-2 rounded text-white";
+          deleteTodo.textContent ="Delete"
+
+          deleteTodo.addEventListener("click", () => {
+            todoItem.remove()
+          })
+
+          todoItem.appendChild(todovalue)
+          todoItem.appendChild(deleteTodo);
+
+
+          todos.appendChild(todoItem)
+
+          console.log(todoItem)
+
         });
     });
   </script>
